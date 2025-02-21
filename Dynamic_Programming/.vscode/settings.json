@@ -1,0 +1,24 @@
+{
+    "files.associations": {
+        "iostream": "cpp"
+    },
+    "editor.fontFamily": "Cascadia Code",
+    "editor.fontVariations": true,
+    "files.autoSave": "afterDelay",
+    "editor.fontSize": 13,
+    "editor.fontLigatures": false,
+    "C_Cpp.intelliSenseEngine": "Tag Parser",
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/.hg/store/**": true
+    },
+    "search.followSymlinks": false,
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": false,
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.openSideBySideDirection": "right",
+    "workbench.editor.limit.enabled": true,
+    "files.autoSaveDelay": 2000
+}

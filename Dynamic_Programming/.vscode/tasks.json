@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Program",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-o", "program", "program.cpp"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Run Program",
+            "type": "shell",
+            "command": "./program",
+            "args": [
+                ">", "output.txt",
+                "2>", "error.txt"
+            ],
+            "dependsOn": "Build Program",
+            "problemMatcher": []
+        }
+    ]
+}

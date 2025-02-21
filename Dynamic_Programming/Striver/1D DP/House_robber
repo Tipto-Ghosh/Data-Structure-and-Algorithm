@@ -1,0 +1,52 @@
+from typing import List
+class Solution:
+    def rob(self, arr: List[int]) -> int:
+        '''
+        n = len(arr)
+        # Circular House
+        if n == 1:
+            return arr[0]
+        
+        def solve(curr_pos: int , end: int) -> int:
+            if curr_pos < end:
+                return 0
+            if dp[curr_pos] != -1:
+                return dp[curr_pos]
+            
+            rob = arr[curr_pos] + solve(curr_pos - 2 , end)
+            skip = solve(curr_pos - 1 , end)
+            dp[curr_pos] = max(rob , skip)
+            return dp[curr_pos]
+        
+        dp = [-1] * n
+        # start with last index
+        ans1 = solve(n-1 , 1)
+        # skip the last index
+        dp = [-1] * n
+        ans2 = solve(n-2 , 0)
+        return max(ans1 , ans2)
+        '''
+        # Tabulation Method
+        def tabulation(start: int , end: int) -> int:
+            if start > end:
+                return 0
+            
+            n = len(arr)
+            dp = [0] * (n + 1)
+            # initialize phase
+            dp[start] = arr[start]
+            if start + 1 <= end:
+                dp[start + 1] == max(dp[start] , dp[start + 1])
+                
+            for curr_pos in range(start + 2 , end + 1):
+                rob = arr[curr_pos] + dp[curr_pos - 2]
+                skip = dp[curr_pos - 1]
+                dp[curr_pos] = max(rob , skip)    
+            print(dp)
+            return dp[end]    
+        n = len(arr)
+        return max(tabulation(0 , n - 2) , tabulation(1 , n - 1))  
+    
+sol = Solution()
+nums = [2]
+print(sol.rob(nums))
