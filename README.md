@@ -13,7 +13,8 @@ Along with the solutions, I’m maintaining a Google Drive sheet where you’ll 
 📌 Step-by-step approach & intuition 🔍
 📌 Optimized solutions with explanations ✅
 
-🔗 Access the Google Drive Sheet Here
+🔗 **[Access the Google Drive Sheet Here](https://docs.google.com/spreadsheets/d/12dtCaZW-uyPYyUinDm3ZHywE6Yx4OmmYdKvNYosb2c0/edit?usp=sharing)**
+
 
 💡 Whether you're preparing for coding interviews or sharpening your problem-solving skills, this repo is your go-to guide!
 
