@@ -1,0 +1,74 @@
+from typing import List
+from collections import defaultdict
+class Solution:
+    def mostProfitablePath(self, edges: List[List[int]], bob: int, amount: List[int]) -> int:
+        # Build the Tree: Construct an adjacency list from the given edges
+        # Find Bob’s Path to 0: Use DFS to track the path from bob to 0. Store the depth of each node in Bob’s path.
+        
+        """
+        Simulate Alice's Path:
+           Use DFS to explore all paths Alice can take.
+           At each node, adjust the amount based on whether Bob is there at the same time (split cost/reward).
+           Stop when Alice reaches a leaf node.
+           Keep track of the maximum profit.
+        """
+        
+        # Making the adjList
+        tree = defaultdict(list)
+        for u , v in edges:
+            tree[u].append(v)
+            tree[v].append(u)
+        
+        # Find the from node 'bob' to 0
+        parent = {0 : None} # parent of each node[start from 0 so there is not parent for 0]
+        bob_path = {} # map bob_node -> depth from bob
+        
+        def dfs_bob(node , par , depth):
+            if node == bob:
+                bob_path[node] = depth
+                return True
+            
+            for neiNode in tree[node]:
+                if neiNode == par:
+                    continue
+                parent[neiNode] = node
+                if dfs_bob(neiNode , node , depth + 1):
+                    bob_path[node] = depth
+                    return True
+            
+            return False
+        
+        dfs_bob(0 , None , 0)
+        
+        # now adjust the amount based on bob' move
+        curr = bob
+        bob_depth = 0
+        while curr is not None:
+            if bob_depth < bob_path[curr]: # if bob reaches first
+                amount[curr] = 0
+            elif bob_depth == bob_path[curr]: # they reaches at the same time.So amount will be divides
+                amount[curr] //= 2
+            curr = parent[curr]
+            bob_depth += 1
+        
+        # Find the profit for alice
+        max_profit = -float('INF')
+        
+        def dfs_alice(node , par , curr_profit):
+            nonlocal max_profit
+            curr_profit += amount[node]
+            is_leaf = True
+            for neiNode in tree[node]:
+                if neiNode == par:
+                    continue
+                is_leaf = False # here we will come there will be a neiNode except parent so node is not a leaf node
+                dfs_alice(neiNode , node , curr_profit)
+            
+            if is_leaf:
+                max_profit = max(max_profit , curr_profit)
+        
+        dfs_alice(0 , None , 0)
+        return max_profit 
+        
+        
+        
