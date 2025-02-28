@@ -31,6 +31,7 @@ class Solution:
         
         return ans if ans >= 3 else 0
 
+
 sol = Solution()
 arr = [1,2,3,4,5,6,7,8]
 print(sol.lenLongestFibSubseq(arr))
