@@ -2,26 +2,26 @@ from typing import List
 
 class Solution:
     def pivotArray(self, arr: List[int], pivot: int) -> List[int]:
-        # Traverse the array 2 times.
-        # First, move all elements less than pivot to the front.
-        # Then, move all elements equal to pivot next.
-        # The remaining elements are automatically greater than the pivot.
-        n = len(arr)
-        low = 0
+        # Traverse the array 3 times.
+        # First take all elements less than pivot
+        # Then  take all elements equal to pivot
+        # After that take all elements greater than pivot
+        ans = []
         # Take elements which is less than pivot
-        for i in range(n):
-            if arr[i] < pivot:
-                # Swapping small element
-                arr[low] , arr[i] = arr[i] , arr[low]
-                low += 1
+        for ele in arr:
+            if ele < pivot:
+                ans.append(ele)
         # Take elements which is equal to pivot
-        equal = low 
-        for i in range(low , n):
-            if arr[i] == pivot:
-                arr[i] , arr[equal] = arr[equal] , arr[i]
-                equal += 1
-        
-        return arr         
+        for ele in arr:
+            if ele == pivot:
+                ans.append(ele)
+        # Take elements which is greater than pivot
+        for ele in arr:
+            if ele > pivot:
+                ans.append(ele)
+                
+        return ans       
+                
                 
 sol = Solution()
 
