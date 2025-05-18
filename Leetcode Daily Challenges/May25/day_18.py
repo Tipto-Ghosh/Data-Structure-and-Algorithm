@@ -1,3 +1,4 @@
+from collections import defaultdict
 class Solution:
     def colorTheGrid(self, m: int, n: int) -> int:
         mod = 10**9 + 7
