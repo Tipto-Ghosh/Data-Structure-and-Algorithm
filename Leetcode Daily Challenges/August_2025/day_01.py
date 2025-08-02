@@ -1,32 +1,34 @@
 from typing import List
 
 class Solution:
-    def subarrayBitwiseORs(self, arr: List[int]) -> int:
-        prev_sub_array = set()
-        curr_sub_array = set()
-        ans = set()
+    def generate(self, numRows: int) -> List[List[int]]:
+        """ 
+        if we start level from 0 then
+        size at level n = n + 1
+        first and last element will be always 1
         
-        for i in range(len(arr)):
-            curr_ele = arr[i]
+        if we are at row r and col c then val[r][c] = val[r - 1][c - 1] + val[r - 1][c]
+        """
+        
+        ans = []
+        prev_level = []
+        
+        for row in range(numRows):
+            curr_level_size = row + 1
+            curr_vals = [1] * curr_level_size
             
-            for ele in prev_sub_array:
-                val = ele | curr_ele
-                curr_sub_array.add(val)
-                ans.add(val)
+            for col in range(1 , curr_level_size - 1):
+                curr_vals[col] = prev_level[col - 1] + prev_level[col]
             
-          
-            curr_sub_array.add(curr_ele)
-            ans.add(curr_ele)     
-            
-            prev_sub_array = curr_sub_array.copy()
-            curr_sub_array.clear()
+            prev_level = curr_vals
+            ans.append(curr_vals)
         
-        return len(ans)
-        
-        
-        
+        return ans 
+
+
 sol = Solution()
 
-print(sol.subarrayBitwiseORs([0]))
-print(sol.subarrayBitwiseORs([1,1,2]))
-print(sol.subarrayBitwiseORs([1,2,4]))
+print(sol.generate(1))    
+print(sol.generate(2))    
+print(sol.generate(3))    
+print(sol.generate(4))    
